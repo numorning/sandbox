@@ -53,17 +53,16 @@ export default {
       this.state = 'playing'
     },
     check() {
-      console.log()
       if (this.value === this.target) {
         this.state = 'end'
-        this.history.push({ value: this.value, hint: 'gagné !' })
+        this.history.unshift({ value: this.value, hint: 'gagné !' })
       } else if (this.tries <= 0) {
         this.state = 'end'
-        this.history.push({ value: this.value, hint: 'perdu' })
+        this.history.unshift({ value: this.value, hint: 'perdu' })
       } else {
         this.tries--
         this.hint = this.value > this.target ? 'moins' : 'plus'
-        this.history.push({ value: this.value, hint: this.hint })
+        this.history.unshift({ value: this.value, hint: this.hint })
         this.value = null
       }
     }
