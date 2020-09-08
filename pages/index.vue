@@ -4,23 +4,24 @@
 
     <div v-if="state === 'init'">
       <p>
-        Nous avons généré un nombre aléatoire entre 1 et 100. Vous devez le deviner en 10 tours maximum !<br />
-        Proposez des nombres et nous vous dirons si votre estimation est trop haute ou trop basse.
+        Nous avons généré un nombre aléatoire entre 1 et 100. Vous devez le deviner en 10 tours maximum !
+        <br />Proposez des nombres et nous vous dirons si votre estimation est trop haute ou trop basse.
       </p>
       <button @click="start">C'est parti!</button>
     </div>
 
     <div v-if="state !== 'init'">
       <p>
-        Il vous reste {{ tries }} essais.<br />
-        Votre proposition:
+        Il vous reste {{ tries }} essais.
+        <br />Votre proposition:
       </p>
       <input type="number" v-model.number="value" />
       <button @click="check">Valider</button>
 
       <ul v-if="history.length">
         <li v-for="item in history" :key="item.value">
-          <strong>{{ item.value }}</strong> : c'est {{ item.hint }}
+          <strong>{{ item.value }}</strong>
+          : c'est {{ item.hint }}
         </li>
       </ul>
     </div>
@@ -56,7 +57,7 @@ export default {
       if (this.value === this.target) {
         this.state = 'end'
         this.history.unshift({ value: this.value, hint: 'gagné !' })
-      } else if (this.tries <= 0) {
+      } else if (this.tries <= 1) {
         this.state = 'end'
         this.history.unshift({ value: this.value, hint: 'perdu' })
       } else {
